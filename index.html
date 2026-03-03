@@ -1,0 +1,226 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ら〜めも</title>
+    <style>
+      :root {
+        --primary-color: #c0533a;
+        --primary-light: #d4745a;
+        --background: #fdf6f0;
+        --text-color: #3a3a3a;
+        --text-light: #888;
+        --border-color: #e8dcd6;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family:
+          -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Sans",
+          "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
+        background-color: var(--background);
+        color: var(--text-color);
+        line-height: 1.8;
+      }
+
+      .container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 40px 24px;
+      }
+
+      header {
+        text-align: center;
+        margin-bottom: 48px;
+        padding-bottom: 32px;
+        border-bottom: 1px solid var(--border-color);
+      }
+
+      .app-icon {
+        width: 120px;
+        height: 120px;
+        border-radius: 24px;
+        margin: 0 auto 24px;
+      }
+
+      h1 {
+        font-size: 2rem;
+        color: var(--primary-color);
+        margin-bottom: 8px;
+        font-weight: 600;
+      }
+
+      .tagline {
+        font-size: 1rem;
+        color: var(--text-light);
+        margin-bottom: 24px;
+      }
+
+      .description {
+        font-size: 1rem;
+        color: var(--text-color);
+        max-width: 600px;
+        margin: 0 auto;
+      }
+
+      section {
+        margin-bottom: 48px;
+      }
+
+      h2 {
+        font-size: 1.25rem;
+        color: var(--primary-color);
+        margin-bottom: 20px;
+        padding-bottom: 8px;
+        border-bottom: 2px solid var(--border-color);
+        font-weight: 600;
+      }
+
+      .features {
+        display: grid;
+        gap: 16px;
+      }
+
+      .feature-item {
+        background-color: #fff;
+        border: 1px solid var(--border-color);
+        border-radius: 12px;
+        padding: 20px 24px;
+      }
+
+      .feature-item h3 {
+        font-size: 1rem;
+        color: var(--primary-color);
+        margin-bottom: 6px;
+        font-weight: 600;
+      }
+
+      .feature-item p {
+        font-size: 0.9375rem;
+        color: var(--text-color);
+      }
+
+      .links-section {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .links-section a {
+        display: block;
+        padding: 16px 20px;
+        background-color: #fff;
+        border: 1px solid var(--border-color);
+        border-radius: 8px;
+        color: var(--primary-color);
+        text-decoration: none;
+        font-weight: 500;
+        transition: background-color 0.2s;
+      }
+
+      .links-section a:hover {
+        background-color: #f7ede8;
+      }
+
+      footer {
+        text-align: center;
+        margin-top: 48px;
+        padding-top: 24px;
+        border-top: 1px solid var(--border-color);
+        color: var(--text-light);
+        font-size: 0.875rem;
+      }
+
+      @media (max-width: 600px) {
+        .container {
+          padding: 24px 16px;
+        }
+        h1 {
+          font-size: 1.5rem;
+        }
+        .app-icon {
+          width: 100px;
+          height: 100px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <img
+          src="./static/images/app_icon.png"
+          alt="ら〜めも アプリアイコン"
+          class="app-icon"
+        />
+        <h1>ら〜めも</h1>
+        <p class="tagline">ラーメンを記録・共有するアプリ</p>
+        <p class="description">
+          「ら〜めも」は、食べたラーメンを写真・メモ・評価とともに記録できるiOSアプリです。
+          訪問した店舗を地図で振り返ったり、ラーメン仲間とお気に入りを共有したりできます。
+        </p>
+      </header>
+
+      <main>
+        <section>
+          <h2>主な機能</h2>
+          <div class="features">
+            <div class="feature-item">
+              <h3>ラーメン記録</h3>
+              <p>
+                食べたラーメンを店舗名・日時・評価・メモ・写真とともに記録できます。
+                カメラで撮影してすぐに登録できるシンプルな操作性です。
+              </p>
+            </div>
+            <div class="feature-item">
+              <h3>カレンダー表示</h3>
+              <p>
+                記録をカレンダー形式で一覧表示。
+                いつどのラーメンを食べたか、ひと目で確認できます。
+              </p>
+            </div>
+            <div class="feature-item">
+              <h3>地図で振り返る</h3>
+              <p>
+                訪問した店舗の場所を地図上にピン表示。
+                フレンドのお気に入り・最新記録も地図で確認できます。
+              </p>
+            </div>
+            <div class="feature-item">
+              <h3>フレンド機能</h3>
+              <p>
+                フレンドコードで仲間と繋がり、お互いのお気に入りラーメンや
+                最近の記録を共有できます。
+              </p>
+            </div>
+            <div class="feature-item">
+              <h3>クラウド同期</h3>
+              <p>
+                Googleアカウントを連携することで、機種変更時もデータを引き継げます。
+                アカウント不要でもアプリを利用できます。
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <h2>規約・ポリシー</h2>
+          <div class="links-section">
+            <a href="./privacy-policy.html">プライバシーポリシー</a>
+            <a href="./terms.html">利用規約</a>
+          </div>
+        </section>
+      </main>
+
+      <footer>
+        <p>&copy; 2026 ら〜めも All rights reserved.</p>
+      </footer>
+    </div>
+  </body>
+</html>
