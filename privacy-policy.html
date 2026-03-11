@@ -137,7 +137,7 @@
       <header>
         <h1>プライバシーポリシー</h1>
         <p class="app-name">ら〜めも</p>
-        <p class="last-updated">最終更新日: 2026年3月4日</p>
+        <p class="last-updated">最終更新日: 2026年3月11日</p>
       </header>
 
       <main>
@@ -198,17 +198,24 @@
           <h3>2.4 クラウドに保存されるデータ（アカウント連携時）</h3>
           <p>
             Googleアカウントを連携した場合、以下のデータが
-            クラウドサービス（Cloud Firestore）に保存・同期されます。
+            クラウドサービスに保存・同期されます。
           </p>
           <ul>
-            <li>ラーメン記録（店舗名、訪問日時、評価、メモ、位置情報等）</li>
-            <li>フレンド情報（フレンドコード、ニックネーム等）</li>
             <li>
-              フレンドと共有するお気に入り・最新記録の概要（メモ・写真パスを除く）
+              <strong>Cloud Firestore</strong>：
+              ラーメン記録（店舗名、訪問日時、評価、メモ、位置情報等）、
+              フレンド情報（フレンドコード、ニックネーム等）、
+              フレンドと共有するお気に入り・最新記録の概要
+            </li>
+            <li>
+              <strong>Firebase Storage</strong>：
+              フレンドのお気に入り・最新記録として共有されるサムネイル画像
+              （ユーザーがお気に入りまたは最新として設定したラーメン写真の縮小版）
             </li>
           </ul>
           <p>
-            ラーメンの写真は端末内にのみ保存され、クラウドには送信されません。<br />
+            写真の原本は端末内にのみ保存されます。
+            共有サムネイルのみが Firebase Storage（Google LLC のサーバー）に保存されます。<br />
             これらのデータはユーザーのアカウントに紐付けられ、
             ユーザー本人のデータ保護・フレンド機能の提供目的にのみ使用します。
             開発者がこれらのデータを閲覧・利用することはありません。
@@ -216,14 +223,22 @@
 
           <h3>2.5 お問い合わせ時に提供される情報</h3>
           <p>
-            アプリ内のお問い合わせ機能を通じてお問い合わせいただく際に、
-            以下の情報が提供される場合があります。
+            アプリ内のお問い合わせ機能（Google フォームを使用）を通じてお問い合わせいただく際に、
+            以下の情報が収集されます。
           </p>
           <ul>
             <li>メールアドレス</li>
-            <li>アプリのバージョン、端末名、OSの種類</li>
-            <li>お問い合わせ内容</li>
+            <li>お問い合わせの種類・内容</li>
+            <li>アプリバージョン（自動送信）</li>
+            <li>端末機種名・OSバージョン（自動送信）</li>
           </ul>
+          <p>
+            これらの情報は Google LLC（Google フォーム）のサーバーに送信されます。
+            Google フォームのデータ取り扱いについては、
+            <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">
+              Google 社のプライバシーポリシー
+            </a>をご確認ください。
+          </p>
         </section>
 
         <section>
@@ -243,11 +258,10 @@
         </section>
 
         <section>
-          <h2>4. 利用している外部サービス（Firebase）</h2>
-          <p>
-            本アプリでは、Google
-            LLCが提供する「Firebase」を以下の用途で利用しています。
-          </p>
+          <h2>4. 利用している外部サービス</h2>
+
+          <h3>4.1 Firebase（Google LLC）</h3>
+          <p>本アプリでは以下の Firebase サービスを利用しています。</p>
           <ul>
             <li>
               <strong>Firebase Authentication</strong>：
@@ -258,19 +272,51 @@
               アカウント連携時のラーメン記録・フレンド情報のクラウド同期に使用します。
             </li>
             <li>
-              <strong>Firebase Analytics / Crashlytics</strong>：
-              アプリの利用状況やエラー情報を個人を特定しない形で収集し、品質改善に使用します。
+              <strong>Firebase Storage</strong>：
+              フレンドと共有するサムネイル画像（お気に入り・最新記録）の保存に使用します。
             </li>
           </ul>
           <p>
             Firebaseによって収集・処理される情報の取り扱いについては、
-            <a
-              href="https://policies.google.com/privacy"
-              target="_blank"
-              rel="noopener"
-            >
-              Google社のプライバシーポリシー </a
-            >をご確認ください。
+            <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">
+              Google社のプライバシーポリシー
+            </a>をご確認ください。
+          </p>
+
+          <h3>4.2 Google AdMob（Google LLC）</h3>
+          <p>
+            本アプリでは、Google LLC が提供する広告配信サービス「Google AdMob」を使用して
+            バナー広告およびインタースティシャル広告を表示しています。
+            広告配信にあたり、広告識別子（IDFA 等）やアプリの利用状況が
+            Google LLC に送信される場合があります。
+          </p>
+          <p>
+            広告に関するデータの取り扱いについては、
+            <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">
+              Google社のプライバシーポリシー
+            </a>および
+            <a href="https://support.google.com/admob/answer/6128543" target="_blank" rel="noopener">
+              Google AdMob のポリシー
+            </a>をご確認ください。
+            また、iOS の設定アプリからパーソナライズ広告のオプトアウトが可能です。
+          </p>
+
+          <h3>4.3 Google マップ（Google LLC）</h3>
+          <p>
+            地図表示および位置情報の取得に、Google LLC が提供する「Google Maps」を利用しています。
+            Google マップによって収集される情報については、
+            <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">
+              Google社のプライバシーポリシー
+            </a>をご確認ください。
+          </p>
+
+          <h3>4.4 Google フォーム（Google LLC）</h3>
+          <p>
+            アプリ内のお問い合わせ機能には Google LLC が提供する「Google フォーム」を使用しています。
+            送信された情報の取り扱いについては、
+            <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">
+              Google社のプライバシーポリシー
+            </a>をご確認ください。
           </p>
         </section>
 
