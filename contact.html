@@ -166,48 +166,64 @@
   </div>
 
   <script>
-    // URLパラメータからフォーム設定を読み込む
-    // Dartアプリが ?fid=&e1=&e2=&e3=&e4=&e5=&v=&os= を付与して開く
+    // URLパラメータからフォーム設定を読み込む（アプリが付与）
+    // ブラウザ直接アクセス時はハードコードされた値をフォールバックとして使用
     var p = new URLSearchParams(window.location.search);
 
-    var formId    = p.get('fid') || '';
-    var e1 = p.get('e1') || ''; // inquiry_type
-    var e2 = p.get('e2') || ''; // email
-    var e3 = p.get('e3') || ''; // content
-    var e4 = p.get('e4') || ''; // app_version
-    var e5 = p.get('e5') || ''; // os_version
-    var appVersion  = p.get('v')  || '';
-    var osVersion   = p.get('os') || '';
+    var formId = p.get('fid') || '1FAIpQLSd6iBbhsp8iW8i7kb98BrDz6gHtpbrjzlZ0WhDQaouwo9cLKg';
+    var e1 = p.get('e1') || 'entry.136912845';  // inquiry_type
+    var e2 = p.get('e2') || 'entry.1381506695'; // email
+    var e3 = p.get('e3') || 'entry.357794579';  // content
+    var e4 = p.get('e4') || 'entry.1703030852'; // app_version
+    var e5 = p.get('e5') || 'entry.1958632762'; // os_version
+    var appVersion = p.get('v')  || '';
+    var osVersion  = p.get('os') || '';
 
     // フォームの送信先を設定
-    if (formId) {
-      document.getElementById('contactForm').action =
-        'https://docs.google.com/forms/d/e/' + formId + '/formResponse';
-    }
+    document.getElementById('contactForm').action =
+      'https://docs.google.com/forms/d/e/' + formId + '/formResponse';
 
     // 各フィールドの name 属性と hidden フィールドの値を設定
-    document.getElementById('inquiry-type').name   = e1;
-    document.getElementById('email').name          = e2;
-    document.getElementById('content').name        = e3;
+    document.getElementById('inquiry-type').name    = e1;
+    document.getElementById('email').name           = e2;
+    document.getElementById('content').name         = e3;
     document.getElementById('appVersionInput').name  = e4;
     document.getElementById('appVersionInput').value = appVersion;
     document.getElementById('osVersionInput').name   = e5;
     document.getElementById('osVersionInput').value  = osVersion;
 
     // 送信ハンドリング
-    var form      = document.getElementById('contactForm');
-    var submitBtn = document.getElementById('submitBtn');
+    var form          = document.getElementById('contactForm');
+    var submitBtn     = document.getElementById('submitBtn');
+    var iframe        = document.getElementById('hidden_iframe');
+    var formSubmitted = false;
+
+    // Google Forms のレスポンスが iframe に読み込まれたタイミングで完了を検知
+    iframe.addEventListener('load', function () {
+      if (!formSubmitted) return;
+
+      if (typeof FlutterChannel !== 'undefined') {
+        // Flutter WebView 内: アプリ側に通知して完了画面へ遷移
+        FlutterChannel.postMessage('submitted');
+      } else {
+        // ブラウザ直接アクセス時: HTML で完了画面を表示
+        document.querySelector('.container').innerHTML =
+          '<div style="text-align:center;padding:40px 0;">' +
+            '<div style="width:80px;height:80px;background:rgba(192,83,58,0.1);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 24px;">' +
+              '<svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#c0533a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">' +
+                '<polyline points="20 6 9 17 4 12"></polyline>' +
+              '</svg>' +
+            '</div>' +
+            '<h2 style="font-size:1.25rem;color:#c0533a;font-weight:600;margin-bottom:12px;">送信完了</h2>' +
+            '<p style="color:#786858;line-height:1.7;">お問い合わせありがとうございます。<br>内容を確認の上、順次対応いたします。</p>' +
+          '</div>';
+      }
+    });
 
     form.addEventListener('submit', function () {
+      formSubmitted = true;
       submitBtn.disabled = true;
       submitBtn.textContent = '送信中...';
-
-      setTimeout(function () {
-        // Flutter WebView 内では FlutterChannel が注入されている
-        if (typeof FlutterChannel !== 'undefined') {
-          FlutterChannel.postMessage('submitted');
-        }
-      }, 2000);
     });
   </script>
 </body>
